@@ -1,0 +1,29 @@
+<button class="button btn-success" (click)="newRecipeAdded()">New recipe</button>
+<div class="row">
+  <div class="col-sm-5 form-group">
+    <label for="name">New Recipe Name</label>
+    <input
+    type="text"
+    id="newName"
+    class="form-control"
+    #newNameInput>    
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-5 form-group">
+    <label for="name">New Recipe description</label>
+    <input
+    type="text"
+    id="description"
+    class="form-control"
+    #newDescription>
+    <span class="pull-right">
+      <label for="img">Image Path</label>
+      <input type="text"
+        id="newImg"
+        class="form-control"
+        #imgPath>
+    </span>
+  </div>
+</div>
+<hr>

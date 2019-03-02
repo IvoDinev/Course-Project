@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col-xs-12">        
+        <app-new-recipe (recipeAdded)="addToList($event)"></app-new-recipe>
+        <div class="row">
+            <div class="col-xs-12">
+                <h3>Select a recipe</h3>
+                <app-recipe-item
+                 *ngFor="let recipeEl of recipes"
+                  [recipe]="recipeEl"
+                 ></app-recipe-item>
+            </div>
+        </div>
+    </div>
+</div>
