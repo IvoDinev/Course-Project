@@ -1,31 +1,40 @@
 <div class="row">
   <div class="col-xs-12">
-    <form>
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
       <div class="row">
         <div class="col-sm-5 form-group">
           <label for="name">Name</label>
-          <input           
-           appEnableButton (textAdded)="enableButton($event)"        
-           >
+          <input
+           type="text"
+           id="ingredientName"
+           class="form-control"
+           ngModel
+           name="name"
+           required>
         </div>
         <div class="col-sm-5 form-group">
           <label for="amount">Amount</label>
           <input
-          type="number"
+          type="amount"
           id="amount"
-          class="form-control"
-          #amountInput>
+          class="form-control"          
+          name="amount"
+          ngModel
+          required
+          pattern="^[1-9]+[0-9]*$"
+          >
+          <span class="help-block" >Please enter a valid amount!</span>
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12">
           <button class="btn btn-success"
-                  type="submit"
-                  [disabled]="disableAdd"                 
-                  (click)="addNewItem()">Add</button>
+                  type="submit"                  
+                  [disabled]="!f.valid"                 
+                  >Add</button>
           <button class="btn btn-danger" type="button">Delete</button>
           <button class="btn btn-primary" type="button">Clear</button>
-        </div>
+        </div>      
       </div>
     </form>
   </div>
