@@ -15,16 +15,8 @@ import { DropdownDirective } from './shared/dropdown.directive';
 import { EnableButtonDirective } from './shared/enable-button.directive';
 import { ShoppingService } from './shopping-list/shopping.service';
 import { HomeComponent } from './home/home.component';
-import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-
-const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'recipes', component: RecipesComponent },
-  { path: 'shopping-list', component: ShoppingListComponent },
-  { path: 'not-found', component: PageNotFoundComponent},
-  { path: '**', redirectTo: '/not-found'}  
-];
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -45,7 +37,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
+    AppRoutingModule 
   ],
   providers: [ShoppingService],
   bootstrap: [AppComponent]
