@@ -1,16 +1,18 @@
 <div class="row">
   <div class="col-xs-12">
-    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <form [formGroup]="ingredientForm" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="col-sm-5 form-group">
           <label for="name">Name</label>
           <input
            type="text"
            id="ingredientName"
-           class="form-control"
-           ngModel
-           name="name"
-           required>
+           formControlName="ingredientName"
+           class="form-control"     
+           >
+           <span
+            *ngIf="!ingredientForm.get('ingredientName').valid && ingredientForm.get('ingredientName').touched"
+            class="help-block" >Please enter a valid name!</span>
         </div>
         <div class="col-sm-5 form-group">
           <label for="amount">Amount</label>
@@ -18,19 +20,18 @@
           type="number"
           id="amount"
           class="form-control"
-          name="amount"
-          ngModel
-          required
-          pattern="^[1-9]+[0-9]*$"
+          formControlName="amount"         
           >
-          <span *ngIf="!f.valid" class="help-block" >Please enter a valid amount!</span>
+          <span
+            *ngIf="!ingredientForm.get('amount').valid && ingredientForm.get('amount').touched"
+            class="help-block" >Please enter a valid amount!</span>
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12">
           <button class="btn btn-success"
                   type="submit"
-                  [disabled]="!f.valid"
+                  [disabled]="!ingredientForm.valid"
                   >Add</button>
           <button class="btn btn-danger" type="button">Delete</button>
           <button class="btn btn-primary" type="button">Clear</button>

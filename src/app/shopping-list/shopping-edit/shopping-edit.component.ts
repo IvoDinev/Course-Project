@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Ingredient } from 'src/app/shared/ingredient.model';
 import { ShoppingService } from '../shopping.service';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -11,27 +11,24 @@ import { Subscription } from 'rxjs';
 })
 export class ShoppingEditComponent implements OnInit, OnDestroy {
   subscription: Subscription;
-  editMode = false;
-  editedItemIndex: number;
+  ingredientForm: FormGroup;
+    
     
   constructor(private shoppingService: ShoppingService) { }
 
   ngOnInit() {
-    this.subscription = this.shoppingService.startedEditing.subscribe(
-                        (index: number) => {
-                         this.editMode = true;
-                         this.editedItemIndex = index;
-                        }
-                      );
+    this.ingredientForm = new FormGroup({
+    'ingredientName': new FormControl(null, Validators.required),
+    'amount': new FormControl(null, [Validators.required, Validators.pattern("^[1-9]+[0-9]*$")])
+    });
   }
   
-  onSubmit(form: NgForm) {
-    const value = form.value;
-   //const newIngredient = new Ingredient(value.ingredientName, value.amount);
-   const newIngredient = new Ingredient(value.name, value.amount);
-   this.shoppingService.addIngredient(newIngredient);   
+  onSubmit() {
+    const value = this.ingredientForm.value;
+    const newIngredient = new Ingredient(value.ingredientName, value.amount);
+    this.shoppingService.addIngredient(newIngredient);
+      
   }
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
+  ngOnDestroy() {    
   }    
 }

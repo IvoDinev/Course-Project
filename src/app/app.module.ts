@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -17,6 +17,7 @@ import { ShoppingService } from './shopping-list/shopping.service';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AppRoutingModule } from './app-routing.module';
+import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 
 @NgModule({
   declarations: [
@@ -32,12 +33,14 @@ import { AppRoutingModule } from './app-routing.module';
     DropdownDirective,
     EnableButtonDirective,
     HomeComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    RecipeEditComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule 
+    AppRoutingModule,
+    ReactiveFormsModule 
   ],
   providers: [ShoppingService],
   bootstrap: [AppComponent]

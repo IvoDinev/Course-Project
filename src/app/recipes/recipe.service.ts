@@ -28,5 +28,5 @@ export class RecipeService {
       recipe.id = this.recipes.length;
       this.recipes.push(recipe);
       this.recipesChanged.emit(this.recipes.slice());
-    }
+    }    
 }
