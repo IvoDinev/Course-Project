@@ -1,42 +1,50 @@
 <div class="row">
   <div class="col-xs-12">
+    <h3>Add new ingredient</h3>
     <form [formGroup]="ingredientForm" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="col-sm-5 form-group">
           <label for="name">Name</label>
-          <input
-           type="text"
-           id="ingredientName"
-           formControlName="ingredientName"
-           class="form-control"     
-           >
-           <span
-            *ngIf="!ingredientForm.get('ingredientName').valid && ingredientForm.get('ingredientName').touched"
-            class="help-block" >Please enter a valid name!</span>
+          <input type="text" id="ingredientName" formControlName="ingredientName" class="form-control">
+          <span *ngIf="!ingredientForm.get('ingredientName').valid && ingredientForm.get('ingredientName').touched"
+            class="help-block">Please enter a valid name!</span>
         </div>
         <div class="col-sm-5 form-group">
           <label for="amount">Amount</label>
-          <input
-          type="number"
-          id="amount"
-          class="form-control"
-          formControlName="amount"         
-          >
-          <span
-            *ngIf="!ingredientForm.get('amount').valid && ingredientForm.get('amount').touched"
-            class="help-block" >Please enter a valid amount!</span>
+          <input type="number" id="amount" class="form-control" formControlName="amount">
+          <span *ngIf="!ingredientForm.get('amount').valid && ingredientForm.get('amount').touched"
+            class="help-block">Please enter a valid amount!</span>
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <button class="btn btn-success"
-                  type="submit"
-                  [disabled]="!ingredientForm.valid"
-                  >Add</button>
-          <button class="btn btn-danger" type="button">Delete</button>
-          <button class="btn btn-primary" type="button">Clear</button>
+          <button class="btn btn-success" type="submit" [disabled]="!ingredientForm.valid">Add</button>          
+          <button class="btn btn-primary" type="button" (click)="onClear()">Clear</button>
         </div>
       </div>
     </form>
   </div>
+</div>
+<div>
+  <hr>
+  <h3>Edit existing ingredient</h3>
+  <form [formGroup]="editIngredient" (ngSubmit)="onEdit()">
+    <div class="row">
+      <div class="col-sm-5 form-group">
+        <label for="name">Name</label>
+        <input type="text" id="ingredientName" formControlName="ingredientName" class="form-control">
+        <span *ngIf="!editIngredient.get('ingredientName').valid && editIngredient.get('ingredientName').touched"
+          class="help-block">Please enter a valid name!</span>
+      </div>
+      <div class="col-sm-5 form-group">
+        <label for="amount">Amount</label>
+        <input type="number" id="amount" class="form-control" formControlName="amount">
+        <span *ngIf="!editIngredient.get('amount').valid && editIngredient.get('amount').touched"
+          class="help-block">Please enter a valid amount!</span>
+      </div>      
+    </div>
+    <button class="btn btn-success" type="submit" [disabled]="!editIngredient.valid">Update</button>
+    <button class="btn btn-primary" type="button" (click)="onEditClear()">Clear</button>
+    <button class="btn btn-danger" type="button" (click)="onDelete()" *ngIf="editIngredient.valid">Delete</button>
+  </form>
 </div>
