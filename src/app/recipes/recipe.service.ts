@@ -1,8 +1,11 @@
 import { Recipe } from './recipe.model';
-import { EventEmitter } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Ingredient } from '../shared/ingredient.model';
 
+
+@Injectable()
 export class RecipeService {
+  constructor() {}  
   recipesChanged = new EventEmitter<Recipe[]>();   
     private recipes: Recipe[] = [
         new Recipe(1,'Schnitzel', 'Awesome Schnitzel',
@@ -28,5 +31,5 @@ export class RecipeService {
       recipe.id = this.recipes.length;
       this.recipes.push(recipe);
       this.recipesChanged.emit(this.recipes.slice());
-    }    
+    }   
 }
