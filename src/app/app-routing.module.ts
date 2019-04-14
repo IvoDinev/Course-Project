@@ -1,25 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { RecipesComponent } from './recipes/recipes.component';
-import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
+import { HomeComponent } from './core/home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { NewRecipeComponent } from './recipes/recipe-list/recipe-item/new-recipe/new-recipe.component';
-import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
-import { SignUpComponent } from './auth/sign-up/sign-up.component';
+import { AuthGuard } from './auth/auth-guard.service';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   { path: 'home', component: HomeComponent },
-  { path: 'recipes', component: RecipesComponent, children: [    
-    { path: 'new-recipe', component: NewRecipeComponent },    
-    { path: ':id', component: RecipeDetailComponent},
-    { path: ':id/edit', component: RecipeEditComponent }
-  ]},
-  { path: 'shopping-list', component: ShoppingListComponent },
+  { path: 'recipes', loadChildren: './recipes/recipes.module#RecipesModule', canLoad: [AuthGuard]},
   { path: 'not-found', component: PageNotFoundComponent},
-  { path: 'auth/signup', component: SignUpComponent},
   { path: '**', redirectTo: '/not-found'}
 ];
 

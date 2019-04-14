@@ -28,8 +28,7 @@ export class NewRecipeComponent implements OnInit {
     this.newRecipe = new Recipe(1, this.newNameRef.nativeElement.value,
                                  this.newDescriptionRef.nativeElement.value,
                                  this.imgPathRef.nativeElement.value, this.ingredients );
-    this.recipeService.addNewRecipe(this.newRecipe);
-    
+    this.recipeService.addNewRecipe(this.newRecipe);    
  }
   ngOnInit() {
     
